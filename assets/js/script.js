@@ -63,7 +63,8 @@ function creatElements(){
     searchCities.on("click", function(){
          
         //  Create variable to caputure button value
-        var city = JSON.stringify(searchCities.val());
+        var city = searchCities.text();
+        console.log(city);
 
         var key = "d7341b8b46766c6ab58b9ea3476b4103";
         // Then we want to grab api used to display response data with city location being button value
