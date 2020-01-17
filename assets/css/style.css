@@ -1,0 +1,45 @@
+
+body { 
+    background: url("https://images.pexels.com/photos/209831/pexels-photo-209831.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+  }
+
+/* Class Selectors */
+.main-header{
+    background-color: grey;
+    color:white;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+.city-search-div{
+    background-color: yellow;
+    padding:20px;
+    margin-right: 10px;
+    height: 379px;
+    
+}
+
+.city-index{
+    background-color: yellowgreen;
+    padding:20px;
+    margin-right: 10px;
+  
+}
+
+.city-info{
+    background-color: aqua;
+    padding:20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    
+}
+
+.city-forecast{
+    background-color: blueviolet;
+    padding:20px;
+    margin-right: 10px;
+}
