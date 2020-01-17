@@ -1,34 +1,42 @@
 
 body { 
-    background: url("https://images.pexels.com/photos/209831/pexels-photo-209831.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"); 
+    background: url("https://cdn.pixabay.com/photo/2016/04/15/04/02/water-1330252_960_720.jpg"); 
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover; 
+    background-size: cover;
+    font-family:'Roboto Condensed', sans-serif ;
   }
 
 /* Class Selectors */
 .main-header{
-    background-color: grey;
+    background-color:#008aff;
     color:white;
     width: 100%;
     padding: 10px;
     text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 .city-search-div{
-    background-color: yellow;
-    padding:20px;
+    background-color: #008aff;
+    padding: 20px;
     margin-right: 10px;
-    height: 379px;
-    
+    height: 100%;
+    margin-bottom: 18px;
+    border-radius: 18px;
+    border: inset #00fff9 4px;
 }
 
 .city-index{
-    background-color: yellowgreen;
-    padding:20px;
+    background-color: #008aff;
+    padding: 20px;
     margin-right: 10px;
-  
+    height: 100%;
+    margin-bottom: 18px;
+    border-radius: 18px;
+    border: inset #00fff9 4px;
 }
+
 
 .city-info{
     background-color: aqua;
@@ -42,4 +50,10 @@ body {
     background-color: blueviolet;
     padding:20px;
     margin-right: 10px;
+}
+
+.searched-header{
+    font-size: 25px;
+    color: #00fff9;
+    border-bottom: solid #00fff9 2px;
 }
