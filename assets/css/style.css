@@ -15,6 +15,7 @@ body {
     padding: 10px;
     text-align: center;
     font-family: 'Roboto Condensed', sans-serif;
+    border-bottom: inset #00FFFD 4px;
 }
 
 .city-search-div{
@@ -25,6 +26,11 @@ body {
     margin-bottom: 18px;
     border-radius: 18px;
     border: inset #00fff9 4px;
+}
+
+.search-city{
+    font-size:18px;
+    color: white;
 }
 
 .city-index{
@@ -54,6 +60,8 @@ body {
 
 .searched-header{
     font-size: 25px;
-    color: #00fff9;
+    color: white;
     border-bottom: solid #00fff9 2px;
 }
+
+ 

@@ -1,5 +1,5 @@
 var container = $(".container");
-
+var cityForecast;
 function creatElements(){
 
 
@@ -14,11 +14,13 @@ function creatElements(){
     row1.append(pageTitle);
 
 // Search city div to search all cities 
-    var citySearchDiv = $("<div>").addClass("col-md-12 city-search-div");
-    citySearchDiv.text("Search For a City : ")
+    var citySearchDiv = $("<div>").addClass("col-md-12 text-center city-search-div");
+    var citySearchP = $("<p>").addClass("search-city");
+    citySearchDiv.append(citySearchP);
+    citySearchP.text("Search For a City : ");
     // Input area for user to type city of choice
-    var citySearch = $("<input>");
-    citySearch.attr("type","text");
+    var citySearchInput = $("<input>");
+    citySearchInput.attr("type","text");
     // Button to click which will later have event-listener
     var searchBtnEl = $("<button>").addClass("btn btn-info");
     searchBtnEl.text("Search");
@@ -31,8 +33,8 @@ function creatElements(){
 
     var br = $("<br>");
     allSearchedCitiesDiv.append(br);
-    
-    citySearchDiv.append(citySearch);
+
+    citySearchDiv.append(citySearchInput);
     citySearchDiv.append(searchBtnEl);
     citySearchDiv.append(allSearchedCitiesDiv);
 
@@ -44,7 +46,7 @@ function creatElements(){
     // Area of page where currentday and 5 day forecast will render
     var cityInfo = $("<div>").addClass("col-md-12 city-info");
     cityInfo.text("City Info :")
-    var cityForecast = $("<div>").addClass("col-md-12 city-forecast");
+    cityForecast = $("<div>").addClass("col-md-12 city-forecast");
     cityForecast.text("City Forecast :")
 
     cityIndex.append(cityInfo);
@@ -55,7 +57,7 @@ function creatElements(){
     // Based on user input once search button is clicked generate button to toggle city index(currentWeather , 5 day forecast)
     searchBtnEl.on("click", function(){
         console.log("on click worked");
-         searchCities.text(citySearch.val());
+         searchCities.text(citySearchInput.val());
         allSearchedCitiesDiv.append(searchCities);
         console.log("It worked");
     });
@@ -75,14 +77,49 @@ function creatElements(){
             method:"GET"
           }).then(function(response){
             console.log(response);
+            // Display city, date, icon image, temp, humidity, wind speed and uv index using response and append to cityInfo
+            var cityName = $("<h2>");
+            var date = $("<div>");
+            // Having trouble getting icon image to render
+            // var iconImage = $("<img>").attr("src", response.weather.icon);
+            var temp = $("<div>");
+            var humidity = $("<div>");
+            var windSpeed = $("<div>");
+
+            cityName.text("City Name: " + response.name 
+            // + iconImage
+            );
+            cityInfo.append(cityName);
+            date.text("Current Date: " + moment().format("dddd, MMMM Do"));
+            cityInfo.append(date);
+            temp.text("Temperature: " + Math.floor(((response.main.temp - 273.15) * 1.80 + 32)) + " F");
+            cityInfo.append(temp);
+            humidity.text("Humidity: " + response.main.humidity+ " %");
+            cityInfo.append(humidity);
+            windSpeed.text("Wind Speed: " + response.wind.speed + " MPH");
+            cityInfo.append(windSpeed);
+
+            
           })
+          var queryURL2 ="http://api.openweathermap.org/data/2.5/forecast/?q=" + city + "&APPID=" + key;
+          $.ajax({
+            url:queryURL2,
+            method:"GET"
+          }).then(function(response){
+            console.log(response);
+            // Display 5 day forecast
+            getFiveDay(response);
+
+            
+            
+          });
+          return searchCities;
     });
 }
 creatElements();
 
 
 
-// api.openweathermap.org/data/2.5/forecast?q={city name},{country code}
 // Get current City searched data
 
 
@@ -91,8 +128,35 @@ function getCityCurrent(){
     
 }
 // Get current city search 5 day
-function getFiveDay(){
+function getFiveDay(res){
+    var fiveDay = [];
 
+    for( var i = 0; i < res.list.length; i += 8){
+        fiveDay.push(res.list[i])
+         console.log(res.list[i]);
+        
+     }
+    for(var j = 0; j < 5; j ++){
+        var forecastDiv = $("<div>");
+        // .attr("data-forecast");
+        cityForecast.append(forecastDiv);
+        // console.log('array', fiveDay)
+        // console.log('i', i)
+         forecastDiv.attr("data-date", fiveDay[j].dt_txt);
+         forecastDiv.attr("data-temp", fiveDay[j].main.temp);
+         forecastDiv.attr("data-humidity", fiveDay[j].main.humidity);
+         console.log(forecastDiv)
+
+         var pDay= $("<p>").text(fiveDay[j].dt_txt); 
+         var pHumidity= $("<p>").text(fiveDay[j].main.humidity); 
+         var pTemp = $("<p>").text((fiveDay[j].main.temp));
+
+         forecastDiv.append(pDay , pHumidity, pTemp);
+    
+    }
+console.log(fiveDay);
 }
+
+
 
 
