@@ -84,7 +84,7 @@ function creatElements(){
             // var iconImage = $("<img>").attr("src", response.weather.icon);
             var temp = $("<div>");
             var humidity = $("<div>");
-            var windSpeed = $("<div>");
+            var windSpeed = $("<div>").addClass("border-bottom");
 
             cityName.text("City Name: " + response.name 
             // + iconImage
@@ -92,7 +92,7 @@ function creatElements(){
             cityInfo.append(cityName);
             date.text("Current Date: " + moment().format("dddd, MMMM Do"));
             cityInfo.append(date);
-            temp.text("Temperature: " + Math.floor(((response.main.temp - 273.15) * 1.80 + 32)) + " F");
+            temp.text("Temperature: " + Math.floor((response.main.temp - 273.15) * 1.80 + 32) + " F");
             cityInfo.append(temp);
             humidity.text("Humidity: " + response.main.humidity+ " %");
             cityInfo.append(humidity);
@@ -137,26 +137,25 @@ function getFiveDay(res){
         
      }
     for(var j = 0; j < 5; j ++){
-        var forecastDiv = $("<div>");
+        var forecastDiv = $("<div>").addClass(" col-md-3 forecast-Div");
         // .attr("data-forecast");
         cityForecast.append(forecastDiv);
         // console.log('array', fiveDay)
         // console.log('i', i)
          forecastDiv.attr("data-date", fiveDay[j].dt_txt);
          forecastDiv.attr("data-temp", fiveDay[j].main.temp);
-         forecastDiv.attr("data-humidity", fiveDay[j].main.humidity);
+         forecastDiv.attr("data-humidity", fiveDay[j].main.humidity).addClass("border-bottom");
          console.log(forecastDiv)
 
-         var pDay= $("<p>").text(fiveDay[j].dt_txt); 
-         var pHumidity= $("<p>").text(fiveDay[j].main.humidity); 
-         var pTemp = $("<p>").text((fiveDay[j].main.temp));
+         var pDay= $("<p>").text( "Date: " +fiveDay[j].dt_txt).addClass("date-p"); 
+         var pHumidity= $("<p>").text("Humdity: " +fiveDay[j].main.humidity).addClass("humidity-p"); 
+         var pTemp = $("<p>").text("Temp: " +Math.floor(fiveDay[j].main.temp - 273.15)* 1.80 + 32).addClass("temp-p");
 
          forecastDiv.append(pDay , pHumidity, pTemp);
     
     }
 console.log(fiveDay);
 }
-
 
 
 

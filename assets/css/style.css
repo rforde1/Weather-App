@@ -1,6 +1,6 @@
 
 body { 
-    background: url("https://cdn.pixabay.com/photo/2016/04/15/04/02/water-1330252_960_720.jpg"); 
+    background-color:darkblue; 
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -64,4 +64,21 @@ body {
     border-bottom: solid #00fff9 2px;
 }
 
- 
+.temp-p{
+    background-color: white;
+}
+
+.date-p{
+    background-color: white;
+}
+
+.humidity-p{
+    background-color: white;
+}
+.forecast-Div{  
+    background-color: white;
+}
+
+.bottom-border{
+    border-bottom: darkblue solid 5px;;
+}
