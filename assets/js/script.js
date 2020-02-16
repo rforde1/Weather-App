@@ -101,7 +101,7 @@ function creatElements(){
 
             
           })
-          var queryURL2 ="http://api.openweathermap.org/data/2.5/forecast/?q=" + city + "&APPID=" + key;
+          var queryURL2 ="https://api.openweathermap.org/data/2.5/forecast/?q=" + city + "&APPID=" + key;
           $.ajax({
             url:queryURL2,
             method:"GET"
